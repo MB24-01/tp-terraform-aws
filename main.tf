@@ -16,3 +16,26 @@ provider "aws" {
 resource "aws_s3_bucket" "demo_bucket" {
   bucket = var.s3_bucket_name
 }
+
+# Instance Web (déjà existante ou à renommer)
+resource "aws_instance" "web_server" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = var.ec2_instance_type
+
+  tags = {
+    Name = "Web-Server-Nginx"
+    Role = "Frontend"
+  }
+}
+
+# NOUVELLE Instance pour la Base de Données
+resource "aws_instance" "db_server" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro" # On peut aussi utiliser une variable ici
+
+  tags = {
+    Name = var.db_instance_name
+    Role = "Database"
+    Env  = "Dev"
+  }
+}

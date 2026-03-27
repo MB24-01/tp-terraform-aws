@@ -21,3 +21,8 @@ variable "sg_port" {
   type        = number
   default     = 80
 }
+variable "db_instance_name" {
+  description = "Nom pour l'instance de base de données"
+  type        = string
+  default     = "DB-Server-Production"
+}
