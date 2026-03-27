@@ -13,3 +13,6 @@ provider "aws" {
     sts = "http://localhost:4566"
   }
 }
+resource "aws_s3_bucket" "demo_bucket" {
+  bucket = var.s3_bucket_name
+}
